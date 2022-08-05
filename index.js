@@ -36,19 +36,16 @@ function makeSound(keyValue){
 };
 
 // Decting the key clicked
-var btn = document.querySelectorAll(".drum");
+var btn = $(".drum");
 for(var i = 0; i< btn.length; i++){
-    btn[i].addEventListener("click",function (){
-
-        var buttonInnerHTML = this.innerHTML;
+    btn.eq(i).click(function(){
+        var buttonInnerHTML = this.innerText;
         makeSound(buttonInnerHTML);
         buttonAnimation(buttonInnerHTML)
-        
     });
 }
-// Detecting the key pressed using keyboard 
 
-document.addEventListener("keydown",function(event) {
+$(document).keypress(function(event){
     makeSound(event.key);
     buttonAnimation(event.key);
 });
@@ -56,11 +53,11 @@ document.addEventListener("keydown",function(event) {
 // Button animation 
 
 function buttonAnimation(currentKey){
-    var activeButton = document.querySelector("."+currentKey);
+    var activeButton = $("."+currentKey);
 
-    activeButton.classList.add("pressed");
+    activeButton.addClass("pressed");
     setTimeout(() => {
-        activeButton.classList.remove("pressed")
+        activeButton.removeClass("pressed")
     }, 100);
 }
 
